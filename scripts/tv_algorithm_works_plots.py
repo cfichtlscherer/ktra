@@ -114,7 +114,6 @@ def step_8_9_10(v, y, lamb, v_memory):
 
     # step 9
     elif v["u_max"] > 0:
-        print("y")
         for i in range(v["k_0"], v["k_plus"] + 1):
             v["x"][i] = v["v_max"]
             v_memory += [list(v["x"])]
@@ -182,11 +181,14 @@ ax[0, 0].plot(y, y2, "-")
 ax[0, 0].plot(y, z_1, "--", color="black")
 ax[0, 0].plot(y[:stop_1], v_memory_1[stop_1][:stop_1], "-")
 ax[0, 0].grid(color='black', linestyle=':', linewidth=0.3)
+ax[0, 0].set_ylabel('$f(x)$')
 
 ax[1, 0].plot(y, y2, "-")
 ax[1, 0].plot(y, z_2, "--", color="black")
 ax[1, 0].plot(y[:stop_1], v_memory_2[stop_1][:stop_1], "-")
 ax[1, 0].grid(color='black', linestyle=':', linewidth=0.3)
+ax[1, 0].set_ylabel('$f(x)$')
+ax[1, 0].set_xlabel('$x$')
 
 ax[0, 1].plot(y,y2, "-")
 ax[0, 1].plot(y,z_1, "--", color="black")
@@ -197,6 +199,7 @@ ax[1, 1].plot(y,y2, "-")
 ax[1, 1].plot(y,z_2, "--", color="black")
 ax[1, 1].plot(y[:stop_2], v_memory_2[stop_2][:stop_2], "-")
 ax[1, 1].grid(color='black', linestyle=':', linewidth=0.3)
+ax[1, 1].set_xlabel('$x$')
 
 # plt.show()
 

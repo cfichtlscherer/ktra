@@ -59,8 +59,8 @@ values = np.load("results_different_number_arrays.npy")
 abs_dif = [ abs(values[i] - values[i+1]) for i in range(48)]
 
 plt.figure(figsize=(0.7 * 6, 0.7 * 3.4))
+plt.plot(np.arange(1, 26), 25*[values[48]], marker="", label="Continuous K-transform")
 plt.plot(np.arange(1, 26), values[:25], marker=".", label="Discretized K-transform")
-plt.plot(np.arange(1, 26), 25*[values[48]], marker=".", label="Continuous K-transform")
 #plt.axhline(y=values[48], color='red', linestyle='--')#, label"Continuous K-transform measurement value")
 plt.grid(color='black', linestyle=':', linewidth=0.3)
 plt.legend()

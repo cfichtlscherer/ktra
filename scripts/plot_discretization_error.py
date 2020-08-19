@@ -58,21 +58,23 @@ perc_re_2 = np.load("perc_re_2.npy")
 plt.figure(figsize=(6,3.4))
 
 plt.grid(True, color='0.9', linestyle='-')
-#
-plt.axhline(co_re_1[0], color="darkorange")
-#plt.plot(range(1, len(co_re_1) + 1), co_re_1, "-", color="red", label="Continuously")
-plt.plot(range(1, len(co_re_1) + 1), dis_re_1, ".-", color="darkorange",
-        label= r"$\mathcal{K}_{dis} \ $"+ "Object 1")#, linewidth=0.5)
-#plt.plot(range(1, len(co_re_1) + 1), perc_re_1, ".-", color="red", label="Relative Difference")
-#
-plt.axhline(co_re_2[0], color="royalblue")
-#plt.plot(range(1, len(co_re_1) + 1), co_re_2, "-", color="blue", label="Continuously")
-plt.plot(range(1, len(co_re_1) + 1), dis_re_2, ".-", color="royalblue",
+
+plt.plot(range(0, len(co_re_1) + 2), np.ones(31) * co_re_1[0], linestyle = "--", color='#ff7f0e',
+        label= r"$\mathcal{K}_{con} \ $"+ "Object 1")#, linewidth=0.5)
+
+plt.plot(range(0, len(co_re_2) + 2), np.ones(31) * co_re_2[0], linestyle = "--", color='#1f77b4', 
+        label= r"$\mathcal{K}_{con} \ $"+ "Object 2")#, linewidth=0.5)
+
+plt.plot(range(1, len(co_re_1) + 1), dis_re_2, ".-", color='#1f77b4',
         label= r"$\mathcal{K}_{dis} \ $"+ "Object 2")#, linewidth=0.5)
-#plt.plot(range(1, len(co_re_1) + 1), perc_re_2, ".-", color="blue", label="Relative Difference")
+
+plt.plot(range(1, len(co_re_1) + 1), dis_re_1, ".-", color='#ff7f0e',
+        label= r"$\mathcal{K}_{dis} \ $"+ "Object 1")#, linewidth=0.5)
+        
 #
 plt.text(23.5, 0.80, r'$\mathcal{K}_{con} = \ $' + str(np.round(co_re_1[0],5)), color="black", fontsize=10)
 plt.text(23.5, 0.89, r'$\mathcal{K}_{con} = \ $' + str(np.round(co_re_2[0],5)), color="black", fontsize=10)
+
 #
 #plt.title('Comparison of the K-Transform values between the continuous and the discretized object')
 plt.xlabel('Level of Discretization [$n$]')
