@@ -45,17 +45,6 @@ from linear_independent import create_source_points_random
 np.set_printoptions(linewidth=np.inf)
 
 
-def inner_of_box(x, y, z):
-    """ Different shells around the origin."""
-
-    rad_pos = (x**2 + y**2 + z**2)**0.5
-  
-    if rad_pos <= 0.8: return 0.0
-    if rad_pos <= 1.0: return 0.8 
-   
-    return 0
-
-
 def change_in_solution(old_solution, new_solution):
     """ prints the 1-norm / 2-norm / inf-norm between the solution and the solution of the last
     step in the iterative splitting method """
@@ -67,8 +56,18 @@ def change_in_solution(old_solution, new_solution):
     print(str(one_norm).ljust(25), str(two_norm).ljust(25), str(inf_norm).ljust(25))
 
 
-steps = 10
+def inner_of_box(x, y, z):
+    """ Different shells around the origin."""
 
+    rad_pos = (x**2 + y**2 + z**2)**0.5
+  
+    if rad_pos <= 0.8: return 0.0
+    if rad_pos <= 1.0: return 0.8 
+   
+    return 0
+
+
+steps = 20
 
 cuboid_coordinates = {'x1': -1, 'x2': 1, 'y1': -1, 'y2': 1, 'z1': -1, 'z2': 1}
 
@@ -84,18 +83,22 @@ radius = 3
 
 ################################################################################
 source_point_d = create_source_point_d(radius, number_ktrans, perc_circle=0.125)
+print(source_point_d)
+quit()
 print("1/8")
 
 rays_d = generate_rays_d(source_point_d, cuboid_coordinates, number_rays)
+print(rays_d)
+quit()
 print("2/8")
 
-# liam_all = generate_all_line_integral_array_matrix(rays_d, cuboid_coordinates, steps, fineness)
-# np.save("liam_all", liam_all)
-liam_all = np.load("liam_all.npy")
+liam_all = generate_all_line_integral_array_matrix(rays_d, cuboid_coordinates, steps, fineness)
+np.save("liam_all", liam_all)
+#liam_all = np.load("liam_all.npy")
 print("3/8")
 
-# cont_results = create_con_results(rays_d, inner_of_box, fineness)
-# np.save("cont_results", cont_results)
+cont_results = create_con_results(rays_d, inner_of_box, fineness)
+np.save("cont_results", cont_results)
 # cont_results = np.load("cont_results.npy")
 # cont_results = np.average(cont_results) * np.ones(cont_results.size)
 print("4/8")
