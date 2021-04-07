@@ -46,18 +46,25 @@ from linear_independent import create_source_points_random
 # print numpy arrays in one line
 np.set_printoptions(linewidth=np.inf)
 
+def get_tv(array_oned):
+    """ calculates the 1d tv of a one-dimensional array"""
+
+    edges = abs(array_oned - np.roll(array_oned, 1))[1:]
+    tv_value = np.sum(edges)
+
+    return tv_value
+
 def inner_of_box(x, y, z):
     """ Different shells around the origin."""
 
     rad_pos = (x**2 + y**2 + z**2)**0.5
   
-    if rad_pos <= 0.8: return 0.0
     if rad_pos <= 1.0: return 0.8 
    
     return 0
 
 def run_example(steps, lamb):
-
+    """ runs a full reconstruction"""
     
     cuboid_coordinates = {'x1': -1, 'x2': 1, 'y1': -1, 'y2': 1, 'z1': -1, 'z2': 1}
     
@@ -104,23 +111,43 @@ def run_example(steps, lamb):
     #cont_results = dis_results
     #np.save("cont_results", cont_results)
     
-    perc_noise = 0.01
-    rho = 0.001
+    perc_noise = 0.0
     
+    # rho =  0.001
+    rho = 2*lamb
+
     cont_results_noise = (np.load("cont_results.npy") +
                             2 * perc_noise * (np.random.random(number_ktrans) - 0.5))
     
-    
+    v1d = threed_to_oned(values, cuboid_coordinates, steps)
     
     ################################################################################
     u = np.zeros(different_lengths)
+    
+    letter = "z"
+    if lamb == 0.01:
+        letter = "a"
+    if lamb == 0.05:
+        letter = "b"
+    if lamb == 0.1:
+        letter = "c"
+    if lamb == 0.2:
+        letter = "d"
+    if lamb == 0.3:
+        letter = "e"
+    if lamb == 0.5:
+        letter = "f"
+    if lamb == 1.0:
+        letter = "g"
+    
     for i in range(1001):
+        print(str(i) + "/ 1000")
     ################################################################################
     #########################   U STEP #############################################
     ################################################################################
         
         if i > 0:
-            u = tv_denoising_algorithm(v.x, lamb)
+            x = tv_denoising_algorithm(v.x, lamb )
     
     ################################################################################
     #########################   V STEP #############################################
@@ -146,22 +173,21 @@ def run_example(steps, lamb):
                                    'maxls': 100,
                                    'maxfun': 10**7})
         
-        #if i > 0:
-        #    change_in_solution(old_solution, v.x)
-        #    print(np.linalg.norm(cont_results_noise - k_trafo_one_dim_all(liam_all, v.x)))
-        #        #np.linalg.norm(cont_results_noise - dis_results),
-    
-    
-        old_solution = v.x # + np.average(v.x) * 0.05 * (np.random.random(len(v.x)) - 0.5)
-    
-        
-        v1d = threed_to_oned(values, cuboid_coordinates, steps)
-        if i % 100 == 0:
+        old_solution = v.x
+   
+   
+        tv_reg_value = get_tv(v.x)
+
+        f = open("logbook" + "-" + str(steps) + "-" + letter + "-" + str(lamb) + ".txt", "a+")
+        f.write(str(i).ljust(8) + str(tv_reg_value).ljust(20) + str(v.x) + "\n" )
+
+        if i % 50 == 0:
             plt.plot(v1d, "-o")
             plt.plot(v.x, "-o")
-            plt.savefig(str(steps) + "-" + str(lamb) + "-" + str(i) + ".png")
+            plt.savefig(str(steps) + "-" + letter + "-" + str(lamb) + "-" + str(i) + ".png")
             plt.close()
 
-for steps in [10, 15, 20, 25]:
+for steps in [8]:
     for lamb in [0.01, 0.05, 0.1, 0.2, 0.3, 0.5]:
+        lamb = 0.01
         run_example(steps, lamb)
