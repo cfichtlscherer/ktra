@@ -106,7 +106,7 @@ def reconstruction(steps, alpha, letter="a"):
     different_lengths = len(dist_array)
     
     number_ktrans = int(different_lengths*10)
-    number_rays = {'dim_1': 5, 'dim_2': 5}
+    number_rays = {'dim_1': 9, 'dim_2': 9}
     fineness = 10**3
     
     radii = np.linspace(2,30, different_lengths) #[2.1, 2.3, 2.5, 2.7, 2.9, 3.1, 3.3, 3.5]
@@ -153,7 +153,7 @@ def reconstruction(steps, alpha, letter="a"):
     alpha_not_normed = alpha
     alpha /= x.size
     gamma = 1 
-    perc_noise = 0
+    perc_noise = 0.01
     
     cont_results = np.load("cont_results.npy")  
     liam_all = np.load("liam_all.npy")
@@ -204,9 +204,9 @@ def reconstruction(steps, alpha, letter="a"):
             plt.close()
 
 
-alphas =  [0.0, 0.01, 0.05, 0.1, 0.2, 0.3, 0.5, 1.0, 2.0, 5.0, 10.0, 25.0]
+alphas =  [0.0, 0.1, 0.15, 0.2, 0.25, 0.3]
 letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "l", "m"]
 
 for steps in [20]:                                                                                  
-    for i in range(12):
+    for i in range(5):
         reconstruction(steps, alphas[i], letters[i])                                                                   
