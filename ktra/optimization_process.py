@@ -339,6 +339,7 @@ def v_step_function(values_1d, *args):
 
     liam_all, cont_results, steps, cuboid_coordinates, rho, u = args
     value_results = k_trafo_one_dim_all(liam_all, values_1d)
+
     value_difference_norm = np.linalg.norm(value_results - cont_results)**2
     uv_dif = np.linalg.norm(u - values_1d)
 
