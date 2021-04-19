@@ -66,11 +66,11 @@ cp -r block 20-0.25-0.05-3
 cp -r block 20-0.3-0.05-3
 
 
-cd 5-0.1-0.01-2     && python3 douglas_rachford_multi.py &\
-cd 5-0.15-0.01-2  && python3 douglas_rachford_multi.py &\
-cd 5-0.2-0.01-2  && python3 douglas_rachford_multi.py &\
-cd 5-0.25-0.01-2  && python3 douglas_rachford_multi.py &\
-cd 5-0.3-0.01-2  && python3 douglas_rachford_multi.py &\
+cd 20-0.1-0.01-2     && python3 douglas_rachford_multi.py &\
+cd 20-0.15-0.01-2  && python3 douglas_rachford_multi.py &\
+cd 20-0.2-0.01-2  && python3 douglas_rachford_multi.py &\
+cd 20-0.25-0.01-2  && python3 douglas_rachford_multi.py &\
+cd 20-0.3-0.01-2  && python3 douglas_rachford_multi.py &\
 cd 20-0.1-0.02-2  && python3 douglas_rachford_multi.py &\
 cd 20-0.15-0.02-2  && python3 douglas_rachford_multi.py &\
 cd 20-0.2-0.02-2  && python3 douglas_rachford_multi.py &\
