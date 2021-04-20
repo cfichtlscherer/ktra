@@ -124,7 +124,7 @@ def reconstruction(steps, alpha, perc_noise, obj):
     x_cor, y_cor, z_cor = coordinate_discretization(cuboid_coordinates, steps)
     dist = distance_creater(x_cor, y_cor, z_cor, steps)
     dist_array = dist_array_maker(dist)
-    different_lengths = len(dist_array)
+    different_lengths = len(dist_array) * 3
     
     number_ktrans = int(different_lengths*10)
     number_rays = {'dim_1': 15, 'dim_2': 15}
