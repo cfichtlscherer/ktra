@@ -228,6 +228,9 @@ def reconstruction(steps, alpha, perc_noise, obj):
         f.write(str(i).ljust(8) + str(tv_reg_value).ljust(20) + str(y) + "\n" )                  
        
         print(i, "--------", np.linalg.norm(y - y_old))
+
+        if np.linalg.norm(y - y_old) <= 0.00001:
+            quit()
         
         if i % 100 == 0:
             results3d = make_threed_back(x, steps, cuboid_coordinates)
