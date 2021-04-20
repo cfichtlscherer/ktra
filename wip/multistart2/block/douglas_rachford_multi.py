@@ -215,7 +215,7 @@ def reconstruction(steps, alpha, perc_noise, obj):
  
     ################################################################################
     
-    for i in range(5000):
+    for i in range(5001):
         
         x_old, y_old, z_old = x, y, z
     
