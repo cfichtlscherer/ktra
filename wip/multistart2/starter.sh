@@ -64,5 +64,5 @@ cd 20-0.1-0.03-2     && python3 douglas_rachford_multi.py &\
 cd 20-0.15-0.03-2  && python3 douglas_rachford_multi.py &\
 cd 20-0.05-0.03-3     && python3 douglas_rachford_multi.py &\
 cd 20-0.1-0.03-3     && python3 douglas_rachford_multi.py &\
-cd 20-0.15-0.03-3  && python3 douglas_rachford_multi.py &\
+cd 20-0.15-0.03-3  && python3 douglas_rachford_multi.py 
 
