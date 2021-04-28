@@ -247,18 +247,17 @@ def reconstruction(steps, alpha, perc_noise, obj):
         #    plt.savefig(str(steps)+ "-" + str(alpha_not_normed) + "-" + str(perc_noise) + "-" + str(i) + ".png")
         #    plt.close()
 
-#cwd = os.getcwd()                 
-#last_part = cwd.rfind("/")        
-#current_folder = cwd[last_part+1:]
-#                                  
-#s1 = current_folder.find("-")      
-#s2 = current_folder.find("-", s1+1)      
-#s3 = current_folder.find("-", s2+1)      
-#
-#steps = int(current_folder[:s1])   
-#alpha = float(current_folder[s1+1:s2])
-#perc_noise = float(current_folder[s2+1:s3])
-#obj = int(current_folder[s3+1])
-#
-#reconstruction(steps, alpha, perc_noise, obj)
-reconstruction(4, 0.01, 0.01, 3)
+cwd = os.getcwd()                 
+last_part = cwd.rfind("/")        
+current_folder = cwd[last_part+1:]
+                                  
+s1 = current_folder.find("-")      
+s2 = current_folder.find("-", s1+1)      
+s3 = current_folder.find("-", s2+1)      
+
+steps = int(current_folder[:s1])   
+alpha = float(current_folder[s1+1:s2])
+perc_noise = float(current_folder[s2+1:s3])
+obj = int(current_folder[s3+1])
+
+reconstruction(steps, alpha, perc_noise, obj)
