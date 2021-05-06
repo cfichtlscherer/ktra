@@ -91,7 +91,7 @@ def make_threed_back(array_oned, steps, cuboid_coordinates):
     dist_fru = dist_array_maker(dist)
 
     model_threed = np.zeros((steps, steps, steps))
-
+    
     for i in range(len(dist_fru)):
         model_threed += (dist == dist_fru[i]) * array_oned[i]
 
