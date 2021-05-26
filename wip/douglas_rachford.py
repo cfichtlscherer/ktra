@@ -108,7 +108,6 @@ def reconstruction(steps, alpha, letter="a"):
     number_ktrans = int(different_lengths*10)
     number_rays = {'dim_1': 9, 'dim_2': 9}
     fineness = 10**3
-    
     radii = np.linspace(2,30, different_lengths) #[2.1, 2.3, 2.5, 2.7, 2.9, 3.1, 3.3, 3.5]
     
     start_index = [i * int(number_ktrans / len(radii)) for i in range(len(radii))]
