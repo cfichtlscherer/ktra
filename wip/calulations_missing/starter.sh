@@ -9,6 +9,14 @@ cp -r block 20-0.115-0.02-3
 cp -r block 20-0.115-0.03-3
 cp -r block 20-0.130-0.01-3
 
+cp -r block 20-0.2-0.01-1
+cp -r block 20-0.04-0.02-2
+cp -r block 20-0.04-0.01-3
+
+cd 20-0.2-0.01-1 && python3 douglas_rachford_multi.py &\
+cd 20-0.04-0.02-2 && python3 douglas_rachford_multi.py &\
+cd 20-0.04-0.01-3 && python3 douglas_rachford_multi.py &\
+
 cd 20-0.115-0.02-3 && python3 douglas_rachford_multi.py &\
 cd 20-0.115-0.03-3 && python3 douglas_rachford_multi.py &\
 cd 20-0.130-0.01-3 && python3 douglas_rachford_multi.py 
