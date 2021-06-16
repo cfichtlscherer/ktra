@@ -6,6 +6,7 @@ GNU General Public License
 Plot reults of some reconstructions in a nice way for publication.
 """
 
+import matplotlib
 import numpy as np
 import matplotlib.pyplot as plt 
 import matplotlib.patches as mpatches
@@ -17,6 +18,19 @@ import pylab as pl
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 from ktra.optimization_process import make_threed_back
+
+
+################################################################################
+
+matplotlib.use("pgf")                                                           
+matplotlib.rcParams.update({                                                    
+    "pgf.texsystem": "pdflatex",                                                
+    'font.family': 'serif',                                                     
+    'text.usetex': True,                                                        
+    'pgf.rcfonts': False,                                                       
+})                                                                              
+                                                                                
+figures_path = '/home/cpf/Desktop/publications-in-work/K-Transform-publication/'
 
 ###################################################################################################
 
@@ -75,8 +89,8 @@ def generate_result_plot(obj):
     results3d = make_threed_back(reconstruction, steps, cuboid_coordinates)                       
 
 
-    fig, ax1 = plt.subplots(figsize=(7,7))
-    left, bottom, width, height = [0.594, 0.579, 0.3, 0.3]
+    fig, ax1 = plt.subplots(figsize=(2.0,2.0))
+    left, bottom, width, height = [0.594, 0.577, 0.3, 0.3]
     ax2 = fig.add_axes([left, bottom, width, height])
     ax1.imshow(results3d[10], vmin=0, vmax=1)
     ax1.axis(False)
@@ -85,11 +99,10 @@ def generate_result_plot(obj):
     ax2.axis(False)
 
     autoAxis = ax2.axis()
-    rec = Rectangle((autoAxis[0]-0.7,autoAxis[2]-0.2),(autoAxis[1]-autoAxis[0])+1,(autoAxis[3]-autoAxis[2])+0.4,fill=False,lw=2)
+    rec = mpatches.Rectangle((autoAxis[0]-0.7,autoAxis[2]-0.2),(autoAxis[1]-autoAxis[0])+1,(autoAxis[3]-autoAxis[2])+0.4,fill=False,lw=1)
     rec = ax2.add_patch(rec)
     rec.set_clip_on(False)
-    
-    plt.savefig("/home/cpf/Desktop/publications-in-work/K-Transform-publication/plot-" + str(obj) + ".png")
+    plt.savefig(figures_path + 'plot-' + str(obj) + '.pgf', bbox_inches='tight')  
     
 ################################################################################
 
@@ -100,13 +113,13 @@ if False:
 
 ################################################################################
 
-
-a = np.array([[0,1]])
-pl.figure(figsize=(9, 1.5))
-img = pl.imshow(a)
-pl.gca().set_visible(False)
-cax = pl.axes([0.1, 0.2, 0.8, 0.6])
-pl.colorbar(orientation="horizontal", cax=cax)
-pl.savefig("/home/cpf/Desktop/publications-in-work/K-Transform-publication/colorbar.png")
+if True:
+    a = np.array([[0,1]])
+    pl.figure(figsize=(4, 0.2))
+    img = pl.imshow(a)
+    pl.gca().set_visible(False)
+    cax = pl.axes([0.1, 0.2, 0.8, 0.6])
+    pl.colorbar(orientation="horizontal", cax=cax)
+    pl.savefig(figures_path + "colorbar.pgf", bbox_inches='tight')
 
 
