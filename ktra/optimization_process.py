@@ -65,6 +65,23 @@ def k_trafo_cont(rays, inner_of_box, fineness=10**4):
     return k_trafo_value_normed
 
 
+def k_trafo_derivation(rays, inner_of_box, direction, fineness=10**4):
+    """
+    24.08.2021 returns the derivation as a function of the change of the object.
+    Implementation of Christinas calculation.
+    continuous case / non rotational symmetric
+    """
+
+    derivation_value = 0
+
+    for i in range(len(rays)):
+        derivation_value += np.exp(- line_integral_cont(rays[i], inner_of_box, fineness)) * line_integral_cont(rays[i], direction, fineness)
+
+    derivation_value_normed = -derivation_value / len(rays)
+
+    return derivation_value_normed
+
+
 def callback_fun(values, *args):
     """this callback function is used to display the value of the function we
     are optimizing"""
@@ -306,7 +323,7 @@ def create_con_results(rays_d, inner_of_box, fineness):
     cont_results = np.zeros(len(rays_d))
 
     # for i in tqdm(range(len(cont_results))):
-    for i in tqdm(range(len(cont_results))):
+    for i in range(len(cont_results)):
         cont_results[i] = k_trafo_cont(rays_d[i], inner_of_box, fineness)
 
     return cont_results
