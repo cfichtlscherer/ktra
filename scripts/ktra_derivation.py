@@ -37,7 +37,7 @@ def direction(x, y, z):
                                                                                                      
     rad_pos = (x**2 + y**2 + z**2)**0.5                                                              
                                                                                                      
-    if rad_pos <= 0.3: return 0.5
+    if rad_pos <= 0.3: return -0.5
                                                                                                      
     return 0                                                                                         
 
