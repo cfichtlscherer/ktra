@@ -106,7 +106,7 @@ def generate_result_plot(obj):
     
 ################################################################################
 
-if False:
+if True:
     generate_result_plot(1)
     generate_result_plot(2)
     generate_result_plot(3)
